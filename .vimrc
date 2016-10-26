@@ -89,35 +89,15 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1c1c1c ctermbg=234
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#121212 ctermbg=233
 
 
-" Find a file by searching up (or is that down?) towards /
-function! UpFind(filename)
-  let l:orig_wd = getcwd()
-  let l:found_file = ""
-
-  while getcwd() != "/"
-    if filereadable( a:filename )
-      let l:found_file = getcwd() . "/" . a:filename
-      break
-    else
-      cd ..
-    endif
-  endwhile
-
-  exec ":cd" fnameescape( l:orig_wd )
-
-  return l:found_file
-endfunction
-
-" Use a local config file named 'vimrc', searching from the current directory
-" upwards (downwards?)
+" Source a local config file named 'vimrc', searching from the current
+" directory upwards
 function! SourceLocal()
-  let l:local_rc_file = UpFind("vimrc")
+  let l:local_rc_file = findfile("vimrc", ";")
   if l:local_rc_file != ""
     let l:source_cmd = "source " . l:local_rc_file
     :exec l:source_cmd
   endif
 endfunction
-
 
 au VimEnter * call SourceLocal()
 
