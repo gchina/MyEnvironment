@@ -48,9 +48,10 @@ export P4EDITOR="vim -X"
 ulimit -c 0
 
 if [ "${TERM:0:6}" == "screen" ] ; then
-#  echo -ne '\033k'${HOSTNAME}'\033\\'
   export PS1=${PS1}'\[\033k\h\033\\\]'
 fi
+export PROMPT_COMMAND=""
+export RSYNC_RSH="ssh -o permitlocalcommand=no"
 
 export GOROOT=/usr/lib/golang
 

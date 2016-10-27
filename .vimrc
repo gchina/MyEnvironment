@@ -23,12 +23,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mhinz/vim-signify'
 
+Plugin 'majutsushi/tagbar'
+
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
-Plugin 'majutsushi/tagbar'
-
-Plugin 'hesselbom/vim-hsftp'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
