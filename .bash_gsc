@@ -1,16 +1,31 @@
 
-#gsc
-
-alias d="ls -x --color"
-alias dir="ls -lh --color"
+# vim: expandtab tabstop=2 shiftwidth=2
 
 alias vi="vim -X -T xterm-256color"
+export LESS="-R"
+if uname -a | grep -q Darwin ;
+then
+  # Mac settings
+  alias d="ls -Gx"
+  alias dir="ls -Glh"
+  export LSCOLORS="gxdxcxcxbxDxDxaDaDecec"
+  export GREP_OPTIONS="--color"
+  export GREP_COLOR="07;36"
+  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+else
+  # Linux settings
+  alias d="ls -x --color -v"
+  alias dir="ls -lh --color -v"
+  export LS_COLORS="di=36:ex=31:ln=33"
+  export GREP_OPTIONS="--color"
+  export GREP_COLORS="07;36"
+fi
 
-alias romulus="ssh -X gchina@romulus.ad.spirentcom.com"
-alias capella4="ssh -X gchina@capella4.ad.spirentcom.com"
-alias trajan="ssh -X gchina@trajan.calenglab.spirentcom.com"
-alias bacchus="ssh -X gchina@bacchus.calenglab.spirentcom.com"
-alias commodus="ssh -X gchina@commodus.calenglab.spirentcom.com"
+
+alias talos4="ssh gchina@talos4.ad.spirentcom.com"
+alias romulus="ssh gchina@romulus.ad.spirentcom.com"
+alias trajan="ssh gchina@trajan.calenglab.spirentcom.com"
+alias bacchus="ssh gchina@bacchus.calenglab.spirentcom.com"
 #alias hon-c3rrtz1="rdesktop -u gchina -d SPIRENTCOM -g 1920x1080 -a 32 -0 -r sound:remote -r clipboard:PRIMARYCLIPBOARD -D HON-C3RRTZ1.ad.spirentcom.com &"
 alias hon-c3rrtz1="ssh gchina@HON-C3RRTZ1.ad.spirentcom.com"
 alias gothos="ssh root@gothos"
@@ -34,11 +49,6 @@ else
   export PS1="${ANSI_GREEN_FG}\h${ANSI_RESET}:\w>"
 fi
 
-export LESS="-R"
-export LS_COLORS="di=01;36:ex=01;31:ln=00;33"
-export GREP_OPTIONS="--color"
-export GREP_COLOR="07;36"
-
 export P4USER=Grant.China
 export P4CONFIG=.p4env
 export P4DIFF=colordiff
@@ -47,11 +57,12 @@ export P4EDITOR="vim -X"
 # don't create core files
 ulimit -c 0
 
+export SCONSFLAGS="-j24 -Q distcc=1 ccache=1 quiet=2"
+alias phxbld="time ./build/il/scripts/phxbld"
+
 if [ "${TERM:0:6}" == "screen" ] ; then
   export PS1=${PS1}'\[\033k\h\033\\\]'
 fi
 export PROMPT_COMMAND=""
 export RSYNC_RSH="ssh -o permitlocalcommand=no"
-
-export GOROOT=/usr/lib/golang
 

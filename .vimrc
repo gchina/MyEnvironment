@@ -28,6 +28,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
+Plugin 'alfredodeza/pytest.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -72,12 +73,15 @@ set listchars=tab:>-,trail:-
 set list
 
 set smartcase
+" disable macro and ex modes
+nnoremap q <Nop>
+nnoremap Q <Nop>
 
-map  :bn
-map  :bp
+nnoremap  :bn
+nnoremap  :bp
 
 set tags=./tags;/
-map <F8> :TagbarToggle
+nnoremap <F8> :TagbarToggle
 let g:tagbar_left = 1
 
 set viminfo=
