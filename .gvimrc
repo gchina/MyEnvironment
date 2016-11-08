@@ -1,7 +1,6 @@
 set lines=34
 set columns=100
-" set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 11,\ Source\ Code\ Pro\ for\ Powerline:h14
 set guioptions=aiL
 set formatoptions=croql
 
