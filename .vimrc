@@ -1,3 +1,5 @@
+" vim: expandtab tabstop=2 shiftwidth=2
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -55,24 +57,26 @@ let g:signify_sign_change = '~'
 highlight DiffAdd           cterm=bold ctermbg=none ctermfg=Green
 highlight DiffDelete        cterm=bold ctermbg=none ctermfg=Red
 highlight DiffChange        cterm=bold ctermbg=none ctermfg=Yellow
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 
 set t_Co=256
 
 syntax enable
+set expandtab
 set number
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set autowrite
 set tildeop
 set visualbell t_vb=
 set modeline
 set nohlsearch
 set smartindent
+set smartcase
 
+set formatoptions=tcqj
 set listchars=tab:>-,trail:-
 set list
 
-set smartcase
 " disable macro and ex modes
 nnoremap q <Nop>
 nnoremap Q <Nop>
@@ -105,10 +109,10 @@ endfunction
 au VimEnter * call SourceLocal()
 
 
-hi Normal       guifg=LightGrey     guibg=Black         ctermfg=LightGrey
-hi Comment      guifg=Black         guibg=Cyan          ctermfg=DarkCyan       ctermbg=Black
-hi SpecialKey   ctermbg=13          guibg=LightRed
-hi SignColumn   ctermbg=Black       guibg=Black
+hi Normal       guifg=LightGrey  guibg=Black     ctermfg=LightGrey
+hi Comment      ctermfg=Black    ctermbg=Cyan    guifg=Black        guibg=Cyan
+hi SpecialKey   ctermbg=13       guibg=LightRed
+hi SignColumn   ctermbg=Black    guibg=Black
 
 set laststatus=2
 
@@ -120,4 +124,29 @@ set colorcolumn=80
 nnoremap ; :
 
 ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+function! QFixToggle()
+  if exists("g:qfix_win")
+    cclose
+    unlet g:qfix_win
+  else
+    copen
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+let mapleader=','
+nnoremap <Leader><Leader> :call QFixToggle()
+noremap <Leader>n :cn
+noremap <Leader>p :cp
+
+" The Silver Searcher
+if executable('ag')
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+  nnoremap \ :grep! "\b<C-R><C-W>\b":cw
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+endif
+
+autocmd VimEnter * IndentGuidesEnable
 
