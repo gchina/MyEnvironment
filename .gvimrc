@@ -3,6 +3,7 @@ set columns=100
 set guifont=Source\ Code\ Pro\ for\ Powerline\ 11,\ Source\ Code\ Pro\ for\ Powerline:h14
 set guioptions=aiL
 set formatoptions=croql
+set t_Co=256
 
 set popt:paper:letter
 
@@ -31,6 +32,11 @@ hi NonText      guifg=LightGrey     guibg=Black
 hi Normal       guifg=LightGrey     guibg=Black
 hi Error        guibg=Red           guifg=Black
 "hi Todo         guifg=Blue          guibg=Yellow
+
+hi SpecialKey   guibg=LightRed
+hi SignColumn   guifg=LightGrey     guibg=Black
+hi ColorColumn  guibg=Grey15
+hi LineNr       guifg=Grey40
 
 
 function! ToggleFullScreen()

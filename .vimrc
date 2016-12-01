@@ -73,7 +73,11 @@ set nohlsearch
 set smartindent
 set smartcase
 
-set formatoptions=tcqj
+if v:version >= 704
+  set formatoptions=tcqj
+else
+  set formatoptions=tcq
+endif
 set listchars=tab:>-,trail:-
 set list
 
@@ -92,8 +96,8 @@ set viminfo=
 
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1c1c1c ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#121212 ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#3a3a3a ctermbg=237
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
 
 
 " Source a local config file named 'vimrc', searching from the current
@@ -118,7 +122,7 @@ set laststatus=2
 
 set noswapfile
 
-highlight ColorColumn ctermbg=233 guibg=#222222
+highlight ColorColumn ctermbg=235
 set colorcolumn=80
 
 nnoremap ; :
