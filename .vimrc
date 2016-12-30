@@ -25,12 +25,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mhinz/vim-signify'
 
+Plugin 'vim-syntastic/syntastic'
+
 Plugin 'majutsushi/tagbar'
 
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
 Plugin 'alfredodeza/pytest.vim'
+
+Plugin 'suan/vim-instant-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -153,4 +157,12 @@ if executable('ag')
 endif
 
 autocmd VimEnter * IndentGuidesEnable
+
+au BufNewFile,BufRead *.md set filetype=markdown
+
+" Syntastic settings
+let g:syntastic_check_on_open = 1
+let g:syntastic_c_checkers = ['gcc']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_sh_checkers = ['shellcheck']
 
