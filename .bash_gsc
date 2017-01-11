@@ -58,13 +58,17 @@ export P4EDITOR="vim -X"
 # don't create core files
 ulimit -c 0
 
+# don't save command history between sessions
+unset HISTFILE
+
 export SCONSFLAGS="-j24 -Q distcc=1 ccache=1 quiet=2"
 alias phxbld="time ./build/il/scripts/phxbld"
 
 if [ "${TERM:0:6}" == "screen" ] ; then
-  export PS1=${PS1}'\[\033k\h\033\\\]'
+  export PROMPT_COMMAND="echo -ne '\033k${HOSTNAME%%.*}\033\\'"
+else
+  export PROMPT_COMMAND=""
 fi
-export PROMPT_COMMAND=""
 export RSYNC_RSH="ssh -o permitlocalcommand=no"
 
 # Attach to the first detached screen session
