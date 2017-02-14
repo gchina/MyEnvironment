@@ -24,6 +24,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mhinz/vim-signify'
+Plugin 'nfvs/vim-perforce'
 
 Plugin 'vim-syntastic/syntastic'
 
@@ -126,7 +127,7 @@ set laststatus=2
 
 set noswapfile
 
-highlight ColorColumn ctermbg=235
+highlight ColorColumn ctermbg=235 guibg=#222222
 set colorcolumn=80
 
 nnoremap ; :

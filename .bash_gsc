@@ -60,8 +60,9 @@ ulimit -c 0
 
 # don't save command history between sessions
 unset HISTFILE
+export HISTCONTROL="ignoredups"
 
-export SCONSFLAGS="-j24 -Q distcc=1 ccache=1 quiet=2"
+export SCONSFLAGS="-j24 -Q distcc=0 ccache=1 quiet=2"
 alias phxbld="time ./build/il/scripts/phxbld"
 
 if [ "${TERM:0:6}" == "screen" ] ; then
