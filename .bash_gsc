@@ -29,6 +29,7 @@ alias trajan="ssh gchina@trajan.calenglab.spirentcom.com"
 alias bacchus="ssh gchina@bacchus.calenglab.spirentcom.com"
 #alias hon-c3rrtz1="rdesktop -u gchina -d SPIRENTCOM -g 1920x1080 -a 32 -0 -r sound:remote -r clipboard:PRIMARYCLIPBOARD -D HON-C3RRTZ1.ad.spirentcom.com &"
 alias hon-c3rrtz1="ssh gchina@HON-C3RRTZ1.ad.spirentcom.com"
+alias hnl-7ch7hh2="ssh gchina@HNL-7CH7HH2.ad.spirentcom.com"
 alias gothos="ssh root@gothos"
 alias ardana="ssh root@ardana"
 
@@ -72,13 +73,20 @@ else
 fi
 export RSYNC_RSH="ssh -o permitlocalcommand=no"
 
-# Attach to the first detached screen session
+# Attempt to attach to a tmux session
 if [[ "${TERM:0:6}" != "screen" ]] ;
 then
-  SCREEN_SESSION=$(screen -ls | grep Detached | head -n 1 | awk '{print $1}')
-  if [[ "${SCREEN_SESSION}" != "" ]] ;
+  if [[ $(tmux list-sessions | grep -v attached) ]] ;
   then
-    exec screen -R ${SCREEN_SESSION}
+    # If there's only a single detached session, automatically attach to it
+    if [[ "$(tmux list-sessions | grep -v attached | wc -l | xargs)" == "1" ]] ;
+    then
+      exec tmux attach-session -t $(tmux list-sessions | grep -v attached | cut -f 1 -d :)
+    else
+      echo "Select tmux session to attach to:"
+      tmux list-session | grep -v attached
+      read -p "Session: " TMUX_SESSION_ID
+      tmux has-session -t ${TMUX_SESSION_ID} && exec tmux attach-session -t ${TMUX_SESSION_ID}
+    fi
   fi
 fi
-
