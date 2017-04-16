@@ -37,6 +37,9 @@ Plugin 'alfredodeza/pytest.vim'
 
 Plugin 'suan/vim-instant-markdown'
 
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -59,11 +62,7 @@ let g:airline_section_y="%{airline#util#prepend(airline#extensions#tagbar#curren
 
 let g:signify_vcs_list = [ 'perforce', 'hg', 'git' ]
 let g:signify_sign_change = '~'
-highlight DiffAdd           cterm=bold ctermbg=none ctermfg=Green
-highlight DiffDelete        cterm=bold ctermbg=none ctermfg=Red
-highlight DiffChange        cterm=bold ctermbg=none ctermfg=Yellow
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
 
 set t_Co=256
 
@@ -77,6 +76,8 @@ set modeline
 set nohlsearch
 set smartindent
 set smartcase
+set mouse=a
+set encoding=utf-8
 
 if v:version >= 704
   set formatoptions=tcqj
@@ -117,11 +118,6 @@ endfunction
 
 au VimEnter * call SourceLocal()
 
-
-hi Normal       guifg=LightGrey  guibg=Black     ctermfg=LightGrey
-hi Comment      ctermfg=Black    ctermbg=Cyan    guifg=Black        guibg=Cyan
-hi SpecialKey   ctermbg=13       guibg=LightRed
-hi SignColumn   ctermbg=Black    guibg=Black
 
 set laststatus=2
 
@@ -167,3 +163,11 @@ let g:syntastic_c_checkers = ['gcc']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_sh_checkers = ['shellcheck']
 
+" NERDTree settings
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <F2> :NERDTreeToggle
+
+colorscheme homer

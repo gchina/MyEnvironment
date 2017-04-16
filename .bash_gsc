@@ -1,6 +1,9 @@
 
 # vim: expandtab tabstop=2 shiftwidth=2
 
+# if this is not an interactive shell, bail immediately
+[[ ! $- == *i* ]] && return
+
 alias vi="vim -X -T xterm-256color"
 export LESS="-R"
 if uname -a | grep -q Darwin ;
@@ -88,5 +91,7 @@ then
       read -p "Session: " TMUX_SESSION_ID
       tmux has-session -t ${TMUX_SESSION_ID} && exec tmux attach-session -t ${TMUX_SESSION_ID}
     fi
+  else
+    exec tmux new
   fi
 fi
