@@ -91,7 +91,5 @@ then
       read -p "Session: " TMUX_SESSION_ID
       tmux has-session -t ${TMUX_SESSION_ID} && exec tmux attach-session -t ${TMUX_SESSION_ID}
     fi
-  else
-    exec tmux new
   fi
 fi
