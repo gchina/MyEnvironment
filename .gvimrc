@@ -12,6 +12,7 @@ set t_Co=256
 set popt:paper:letter
 
 set mouse=
+set clipboard=unnamed
 
 map <C-Insert> "*y
 map <S-Delete> "*x

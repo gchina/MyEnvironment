@@ -92,6 +92,7 @@ else
 endif
 set listchars=tab:>-,trail:-
 set list
+set fillchars=vert:│,fold:-
 
 " disable macro and ex modes
 nnoremap q <Nop>
