@@ -24,16 +24,14 @@ else
 fi
 
 
-alias talos4="ssh gchina@talos4.ad.spirentcom.com"
-alias romulus="ssh gchina@romulus.ad.spirentcom.com"
-alias galileo="ssh gchina@galileo.ad.spirentcom.com"
-alias trajan="ssh gchina@trajan.calenglab.spirentcom.com"
-alias bacchus="ssh gchina@bacchus.calenglab.spirentcom.com"
+alias talos4="ssh gchina@talos4.ad.spirentcom.com $*"
+alias romulus="ssh gchina@romulus.ad.spirentcom.com $*"
+alias galileo="ssh gchina@galileo.ad.spirentcom.com $*"
+alias trajan="ssh gchina@trajan.calenglab.spirentcom.com $*"
+alias bacchus="ssh gchina@bacchus.calenglab.spirentcom.com $*"
 #alias hon-c3rrtz1="rdesktop -u gchina -d SPIRENTCOM -g 1920x1080 -a 32 -0 -r sound:remote -r clipboard:PRIMARYCLIPBOARD -D HON-C3RRTZ1.ad.spirentcom.com &"
-alias hon-c3rrtz1="ssh gchina@HON-C3RRTZ1.ad.spirentcom.com"
-alias hnl-7ch7hh2="ssh gchina@HNL-7CH7HH2.ad.spirentcom.com"
-alias gothos="ssh root@gothos"
-alias ardana="ssh root@ardana"
+alias hon-c3rrtz1="ssh gchina@HON-C3RRTZ1.ad.spirentcom.com $*"
+alias hnl-7ch7hh2="ssh gchina@HNL-7CH7HH2.ad.spirentcom.com $*"
 
 export ANSI_RESET="\[\033[0;0m\]"
 export ANSI_BOLD="\[\033[0;1m\]"
