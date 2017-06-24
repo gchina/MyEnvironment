@@ -23,16 +23,6 @@ else
   export GREP_COLORS="07;36"
 fi
 
-
-alias talos4="ssh gchina@talos4.ad.spirentcom.com $*"
-alias romulus="ssh gchina@romulus.ad.spirentcom.com $*"
-alias galileo="ssh gchina@galileo.ad.spirentcom.com $*"
-alias trajan="ssh gchina@trajan.calenglab.spirentcom.com $*"
-alias bacchus="ssh gchina@bacchus.calenglab.spirentcom.com $*"
-#alias hon-c3rrtz1="rdesktop -u gchina -d SPIRENTCOM -g 1920x1080 -a 32 -0 -r sound:remote -r clipboard:PRIMARYCLIPBOARD -D HON-C3RRTZ1.ad.spirentcom.com &"
-alias hon-c3rrtz1="ssh gchina@HON-C3RRTZ1.ad.spirentcom.com $*"
-alias hnl-7ch7hh2="ssh gchina@HNL-7CH7HH2.ad.spirentcom.com $*"
-
 export ANSI_RESET="\[\033[0;0m\]"
 export ANSI_BOLD="\[\033[0;1m\]"
 export ANSI_BLACK_FG="\[\033[1;30m\]"
@@ -51,20 +41,12 @@ else
   export PS1="${ANSI_GREEN_FG}\h${ANSI_RESET}:\w>"
 fi
 
-export P4USER=Grant.China
-export P4CONFIG=.p4env
-export P4DIFF=colordiff
-export P4EDITOR="vim -X"
-
 # don't create core files
 ulimit -c 0
 
 # don't save command history between sessions
 unset HISTFILE
 export HISTCONTROL="ignoredups"
-
-export SCONSFLAGS="-j24 -Q distcc=0 ccache=1 quiet=2"
-alias phxbld="time ./build/il/scripts/phxbld"
 
 if [ "${TERM:0:6}" == "screen" ] ; then
   export PROMPT_COMMAND="echo -ne '\033k${HOSTNAME%%.*}\033\\'"
