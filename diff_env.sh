@@ -6,7 +6,7 @@ REPO_DIR=$(dirname "${0}")
 echo "${REPO_DIR}"
 
 pushd "${REPO_DIR}" > /dev/null
-find . \( -path ./.git -o -path ./"${THIS}" \) -prune -o -type f -exec echo {} \; -exec diff {} ~/{} \;
+find . \( -path ./.git -o -path ./"${THIS}" \) -prune -o -type f -exec echo {} \; -exec colordiff {} ~/{} \;
 popd > /dev/null
 
 

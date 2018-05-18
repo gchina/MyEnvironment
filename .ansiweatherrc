@@ -1,4 +1,5 @@
-location:wamanalo
+location:waimanalo
 units:imperial
 ansi:false
 symbols:true
+show_daylight:true

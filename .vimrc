@@ -26,25 +26,28 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'vim-airline/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'qpkorr/vim-bufkill'
 
 Plugin 'tpope/vim-fugitive'
-Plugin 'ludovicchabant/vim-lawrencium'
 Plugin 'mhinz/vim-signify'
-Plugin 'nfvs/vim-perforce'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 Plugin 'vim-syntastic/syntastic'
 
-Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'brookhong/cscope.vim'
 
 Plugin 'davidhalter/jedi-vim'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nvie/vim-flake8'
 Plugin 'alfredodeza/pytest.vim'
 
 Plugin 'suan/vim-instant-markdown'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'powerman/vim-plugin-AnsiEsc'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -71,6 +74,8 @@ let g:signify_sign_change = '~'
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 set t_Co=256
+
+autocmd! bufwritepost .vimrc,.local.vimrc source %
 
 syntax enable
 set expandtab
@@ -113,13 +118,13 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#3a3a3a ctermbg=237
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626 ctermbg=235
 
 
-" Source a local config file named 'vimrc', searching from the current
+" Source a local config file named '.local.vimrc', searching from the current
 " directory upwards
 function! SourceLocal()
-  let l:local_rc_file = findfile("vimrc", ";")
+  let l:local_rc_file = findfile(".local.vimrc", ";")
   if l:local_rc_file != ""
     let l:source_cmd = "source " . l:local_rc_file
-    :exec l:source_cmd
+    exec l:source_cmd
   endif
 endfunction
 
@@ -152,12 +157,17 @@ nnoremap <Leader><Leader> :call QFixToggle()
 noremap <Leader>n :cn
 noremap <Leader>p :cp
 
+" Find function definition
+noremap <Leader>b :cs find g <cword>
+" Find functions calling this function
+noremap <Leader>u :cs find c <cword>
+
 " The Silver Searcher
 if executable('ag')
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
   nnoremap \ :grep! "\b<C-R><C-W>\b":cw
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 endif
 
 autocmd VimEnter * IndentGuidesEnable
@@ -178,3 +188,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nnoremap <F2> :NERDTreeToggle
 
 colorscheme homer
+
+au BufReadPre,BufNewFile *.log,minicom.cap setfiletype log
