@@ -14,6 +14,11 @@ else
   set rtp+=~/.vim/bundle/Vundle.vim
   let vundlepath='~/.vim/bundle'
 endif
+
+if has('python3')
+  silent! python3 1
+endif
+
 call vundle#begin(vundlepath)
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -69,7 +74,7 @@ let g:airline_theme = 'dark'
 let g:airline_section_x=""
 let g:airline_section_y="%{airline#util#prepend(airline#extensions#tagbar#currenttag(),0)}%{airline#util#wrap(airline#parts#filetype(),0)}"
 
-let g:signify_vcs_list = [ 'perforce', 'hg', 'git' ]
+let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_change = '~'
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
@@ -179,6 +184,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_c_checkers = ['gcc']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_sh_checkers = ['shellcheck']
+let g:syntastic_sh_shellcheck_args = "-x"
+let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_yaml_checkers = ['yamllint']
 
 " NERDTree settings
 autocmd StdinReadPre * let s:std_in=1
