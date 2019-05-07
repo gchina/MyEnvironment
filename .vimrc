@@ -44,6 +44,8 @@ Plugin 'vim-syntastic/syntastic'
 
 Plugin 'Valloric/YouCompleteMe'
 
+Plugin 'mrk21/yaml-vim'
+
 Plugin 'brookhong/cscope.vim'
 
 Plugin 'davidhalter/jedi-vim'
@@ -112,7 +114,7 @@ nnoremap  :bn
 nnoremap  :bp
 
 set tags=./tags;/
-nnoremap <F8> :TagbarToggle
+nnoremap <F3> :TagbarToggle
 let g:tagbar_left = 1
 
 set viminfo=
@@ -184,7 +186,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_c_checkers = ['gcc']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_sh_checkers = ['shellcheck']
-let g:syntastic_sh_shellcheck_args = "-x"
+let g:syntastic_sh_shellcheck_args = "-x --exclude=SC2086"
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_yaml_checkers = ['yamllint']
 

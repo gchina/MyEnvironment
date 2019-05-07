@@ -4,8 +4,11 @@
 # if this is not an interactive shell, bail immediately
 [[ ! $- == *i* ]] && return
 
+[ -d "${HOME}/local/bin" ] && PATH="${HOME}/local/bin:${PATH}"
+
 alias vi="vim -X -T xterm-256color"
 alias grep="grep --color=auto"
+[ $(which bat) ] && alias cat="bat"
 export LESS="-F -X -R"
 if uname -a | grep -q Darwin ;
 then
