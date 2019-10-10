@@ -3,7 +3,8 @@ set columns=100
 if has('win32')
   set guifont=Sauce_Code_Powerline:h12:cANSI:qDRAFT
 else
-  set guifont=Source\ Code\ Pro\ for\ Powerline\ 16,\ Source\ Code\ Pro\ for\ Powerline:h16
+  set guifont=HasklugNerdFontComplete-Regular:h13
+  set macligatures
 endif
 set guioptions=ai
 set formatoptions=croql

@@ -29,7 +29,8 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'vim-airline/vim-airline'
+Plugin 'itchyny/lightline.vim'
+Plugin 'maximbaz/lightline-ale'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'qpkorr/vim-bufkill'
 
@@ -39,10 +40,9 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
 
-Plugin 'vim-syntastic/syntastic'
-
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'w0rp/ale'
 
 Plugin 'mrk21/yaml-vim'
 
@@ -70,6 +70,13 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+set laststatus=2
+set noshowmode
+
+let g:lightline = {
+    \ 'colorscheme': 'PaperColor',
+    \ }
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'dark'
